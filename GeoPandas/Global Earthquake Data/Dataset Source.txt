@@ -1,0 +1,1 @@
+https://www.kaggle.com/datasets/shreyasur965/recent-earthquakes

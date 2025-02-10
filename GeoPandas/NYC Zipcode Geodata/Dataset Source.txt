@@ -1,0 +1,1 @@
+https://www.kaggle.com/datasets/saidakbarp/nyc-zipcode-geodata?select=nyc-zip-code-tabulation-areas-polygons.geojson
