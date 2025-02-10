@@ -1,0 +1,34 @@
+services:
+  postgis:
+    image: postgis/postgis:14-3.5
+    hostname: postgis
+    container_name: postgis
+    restart: always
+    environment:
+      - POSTGRES_USER=pg
+      - POSTGRES_PASSWORD=pg
+      - POSTGRES_DB=boston_public_schools_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      - ./pg_scripts:/docker-entrypoint-initdb.d
+    networks:
+      - postgis_network
+
+volumes:
+  postgis_data:
+
+networks:
+  postgis_network:
+
+# -- Make sure that the data is imported into the PostGIS table(s) correctly (run this in terminal)
+# -- buildings table in PostGIS
+# echo 'SELECT * FROM buildings LIMIT 12;' | docker exec -i postgis bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
+# echo 'SELECT COUNT(*) FROM buildings;' | docker exec -i postgis bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
+
+
+# -- Make sure that the data was exported into the PostGIS table(s) correctly (run this in terminal)
+# -- clean_school_building table in PostGIS
+# echo 'SELECT * FROM clean_school_building LIMIT 12;' | docker exec -i postgis bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
+# echo 'SELECT COUNT(*) FROM clean_school_building;' | docker exec -i postgis bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
